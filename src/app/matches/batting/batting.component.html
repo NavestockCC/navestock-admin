@@ -1,0 +1,35 @@
+<mat-table #table [dataSource]="dataSourceBatting">
+
+<!-- Player Column -->
+<ng-container matColumnDef="battingPlayer" style="flex-grow: 4">
+<mat-header-cell *matHeaderCellDef>Batting</mat-header-cell>
+<mat-cell *matCellDef="let row">{{row.batsman_name }}</mat-cell>
+</ng-container>
+
+<!-- How Out Column -->
+<ng-container matColumnDef="battingHowOut" style="flex-grow: 4">
+    <mat-header-cell *matHeaderCellDef>How Out</mat-header-cell>
+    <mat-cell *matCellDef="let row"><span style="font-size: smaller"><span *ngIf="row.how_out != 'b'">{{row.how_out}} {{row.fielder_name}}</span> <span *ngIf="row.bowler_name"> b {{row.bowler_name}}</span></span></mat-cell>
+    </ng-container>
+
+<!-- Title Column -->
+<ng-container matColumnDef="battingRuns" style="flex-grow: 1">
+<mat-header-cell *matHeaderCellDef>Runs</mat-header-cell>
+<mat-cell *matCellDef="let row">{{ row.runs }}</mat-cell>
+</ng-container>
+
+<!-- State Column -->
+<ng-container matColumnDef="batting4" style="flex-grow: 1">
+<mat-header-cell *matHeaderCellDef>4s</mat-header-cell>
+<mat-cell *matCellDef="let row">{{ row.fours }}</mat-cell>
+</ng-container>
+<!-- State Column -->
+<ng-container matColumnDef="batting6" style="flex-grow: 1">
+<mat-header-cell *matHeaderCellDef>6s</mat-header-cell>
+<mat-cell *matCellDef="let row">{{ row.sixes }}</mat-cell>
+</ng-container>
+
+
+<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+<mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

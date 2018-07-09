@@ -1,0 +1,61 @@
+    <div *ngIf="MatchDetails| async as MD">
+    <mat-card cardMatch >
+        <mat-card-header>
+            <mat-card-subtitle>{{MD.competition_type}} - {{MD.match_date.toDate() | date}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+
+            <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap>
+                <div fxFlex>{{MD.home_club_name}}<br>{{MD.home_team_name}}</div>
+                <div fxFlex *ngIf="MD.home_team_runs">{{MD.home_team_runs}}/{{MD.home_team_wickets}}</div>
+                <div fxFlex>VS</div>
+                <div fxFlex *ngIf="MD.away_team_runs">{{MD.away_team_runs}}/{{MD.away_team_wickets}}</div>
+                <div fxFlex>{{MD.away_club_name}}<br>{{MD.away_team_name}}</div>
+            </div>
+            <br>
+            <div *ngIf="MD.result_description" fxLayout="column" fxLayoutAlign="sart start" fxLayoutGap>
+                    <div fxFlex><b>Result: {{MD.result_description}}</b></div>
+                    <div fxFlex>{{MD.toss}}</div>
+                    <div fxFlex>{{MD.match_notes}}</div>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+        </mat-card-actions>
+    </mat-card>
+    <mat-divider></mat-divider>
+   
+    <div *ngIf="inningsDetails  | async as ID; else progressSpin">
+    <mat-tab-group>
+            <mat-tab *ngFor="let inningsData of ID" label={{inningsData.team_batting_name}}>
+                <p><b>{{inningsData.team_batting_name}} Batting</b></p>
+                 <!-- Batting Card -->
+                <batting-card [BatTeamId]='inningsData.team_batting_id' [MatchId]='MD.id'></batting-card>
+
+                <!-- Extras -->
+                <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap>
+                            <div fxFlex>Extras</div>
+                            <div fxFlex> {{inningsData.total_extras}} (B {{inningsData.extra_byes}}, LB {{inningsData.extra_leg_byes}}, W {{inningsData.extra_wides}}, NB {{inningsData.extra_no_balls}}, PR {{inningsData.extra_penalty_runs + inningsData.penalties_runs_awarded_in_other_innings}})</div>
+                </div>
+                <mat-divider></mat-divider>
+                 <!-- Total Runs -->
+                <div fxLayout="row" fxLayoutAlign="center start" fxLayoutGap>
+                        <div fxFlex><b>Total Runs</b></div>
+                        <div fxFlex><b>{{inningsData.runs}} ({{inningsData.wickets}} wickets, {{inningsData.overs}} overs)</b></div>
+            </div>
+            <br>
+            <!-- Bowling Card -->
+            <p><b>{{inningsData.team_bowling_name}} Bowling</b></p>
+            <bowling-card [BowlTeamId]='inningsData.team_batting_id' [MatchId]='MD.id'></bowling-card>
+            </mat-tab>       
+    </mat-tab-group>
+</div>
+<ng-template #progressSpin>
+    <div>
+        <p>Please wait loading ...</p>
+        <br>
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-template>
+</div>
+
+    

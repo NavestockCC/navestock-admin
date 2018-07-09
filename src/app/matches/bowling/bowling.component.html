@@ -1,0 +1,35 @@
+<mat-table [dataSource]="dataSourceBowling">
+
+    <!-- Player Column -->
+    <ng-container matColumnDef="bowlingPlayer">
+        <mat-header-cell *matHeaderCellDef>Bowling</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.bowler_name }}</mat-cell>
+    </ng-container>
+
+    <!-- Runs Column -->
+    <ng-container matColumnDef="bowlingRuns">
+        <mat-header-cell *matHeaderCellDef>Runs</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.runs }}</mat-cell>
+    </ng-container>
+
+    <!-- Overs Column -->
+    <ng-container matColumnDef="bowlingOvers">
+        <mat-header-cell *matHeaderCellDef>Overs</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.overs }}</mat-cell>
+    </ng-container>
+    <!-- Maidens Column -->
+    <ng-container matColumnDef="bowlingMaidens">
+        <mat-header-cell *matHeaderCellDef>Maidens</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.maidens }}</mat-cell>
+    </ng-container>
+
+    <!-- Wickets Column -->
+    <ng-container matColumnDef="bowlingWickets">
+        <mat-header-cell *matHeaderCellDef>Wickets</mat-header-cell>
+        <mat-cell *matCellDef="let row">{{ row.wickets }}</mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

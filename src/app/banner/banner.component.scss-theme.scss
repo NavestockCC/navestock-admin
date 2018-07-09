@@ -1,0 +1,32 @@
+@import '~@angular/material/theming';
+
+@mixin banner-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $imgheight: 45px;
+  
+
+  banner {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    
+    [primediv]{
+      background-color: mat-color($primary);
+      color: mat-color($accent);
+    }
+    [logodiv]{
+      img{
+        height: $imgheight;
+        padding:7px
+      }
+    }
+    [headingdiv]{
+      text-align: center;
+      
+    }
+  }
+
+  
+
+}

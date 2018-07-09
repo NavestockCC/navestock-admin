@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+
+@mixin match-list-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  
+  match-list{
+    [cardMatch]{
+      max-width: 400px;
+    }
+    [vs]{
+        text-align: center;
+    }
+    
+  }
+}

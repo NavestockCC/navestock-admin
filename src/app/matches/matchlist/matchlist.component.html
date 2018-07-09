@@ -1,0 +1,42 @@
+<div fxLayout="row" fxLayoutAlign="center start">
+    <div fxFlex='70%' fxFlex.lt-sm="100%">
+        <button *ngFor="let s of (seasonList | async)?.seasons" mat-button color="primary" (click)="setMatchList(s, 'all')">
+            {{s}}</button>
+
+        <mat-card *ngFor="let mM of matchListSeason  | async" cardMatchList>
+            <mat-card-header monthHeader>
+                {{mM.monthName}} {{mM.year}}
+            </mat-card-header>
+    
+    
+            <mat-card *ngFor="let m of mM.matchArray" [routerLink]="['/matchdetails/' + m.id]" cardMatch>
+            <mat-card-header matchHeader>
+                {{m.match_date.toDate() | date}} - {{m.match_time}}
+            </mat-card-header>            
+            <mat-card-content>
+                <div fxLayout="row" fxLayout.xs="column">
+                    <div fxLayout="column" fxLayoutAlign="center start" fxFlex="70%" fxFlex.xs="100%" >
+                        <div fxFlex fxLayoutAlign="center start" cardTeams>{{m.opposition_club_name}} {{m.opposition_team_name}}</div><br>
+                        <div fxFlex fxLayoutAlign="center start" cardTeams>{{m.navestock_club_name}} {{m.navestock_team_name}}</div>
+                        
+                    </div>
+                    <div fxLayout="column" fxFlex="30%" fxFlex.xs="100%">
+                        <div *ngIf="!m.result_description" fxFlex ngClass='cardInfo' ngClass.xs='cardInfoXS'><b>{{m.competition_type}} match</b><br>{{m.ground_name}}</div>
+                        <div *ngIf="m.result_description" fxFlex ngClass='cardInfo' ngClass.xs='cardInfoXS'><b>{{m.result_description}} match</b></div>
+                    </div>
+                </div>
+            </mat-card-content>
+            <mat-card-footer>
+                <div><button mat-raised-button color="primary" (click)="playCricketImport(m)">Import Result</button></div>
+            </mat-card-footer>
+        </mat-card>
+        </mat-card>
+
+    </div>
+    <div fxFlex='30%' fxHide.lt-sm>
+       
+    </div>
+</div>
+
+
+    

@@ -1,0 +1,56 @@
+@import '~@angular/material/theming';
+
+@mixin match-list-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  
+  match-list{
+    [matchList]{
+      display: -webkit-flex; /* Safari */
+      -webkit-align-items: center; /* Safari 7.0+ */
+      display: flex;
+      align-items: center;
+    }
+    [cardMatch]{
+      max-width: 80%;
+      cursor: pointer;
+    }
+    [cardMatchList]{
+      max-width: 80%;
+    }
+    [monthHeader]{
+      background-color: mat-color($primary, 400);
+      color: mat-color($primary, '400-contrast');
+      font-size: 0.95em;
+ 
+    }
+    [matchHeader]{
+      color: mat-color($primary, '100-contrast') ;
+      font-weight: bold;
+      font-size:  0.9em;
+    }
+    [cardTeams]{
+      font-size: 0.9em;
+      margin: 0;
+      padding:0;
+      padding-left: 15px;
+    }
+    .cardInfo{
+      font-size:  0.8em;
+      max-height: 80px;
+      padding-left: 10px;
+      border-left: 3px solid mat-color($accent, 500);
+    }
+    .cardInfoXS{
+      font-size:  0.8em;
+      border-left: 0px ;
+      border-top: 1px solid mat-color($accent, 500);
+      padding-left: 10px;
+    }
+  }
+  .players_wanted_img{
+    width: 100%;
+    border-radius: 10px;
+  }
+
+}

@@ -1,0 +1,23 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+@import'./_navestockappthemepalette.scss';
+@import './app/banner/banner.component.scss-theme.scss';
+@import './app/matches/matchlist/matchlist.component.scss';
+
+
+// mandatory stuff for theming
+$nav-app-primary: mat-palette($nav-brand);
+$nav-app-accent:  mat-palette($nav-accent);
+
+// include the custom theme components into a theme object
+$nav-app-theme: mat-light-theme(
+  $nav-app-primary, 
+  $nav-app-accent
+  );
+
+// include the custom theme object into the angular material theme
+@include angular-material-theme($nav-app-theme);
+@include banner-theme($nav-app-theme);
+@include match-list-theme($nav-app-theme);
+
